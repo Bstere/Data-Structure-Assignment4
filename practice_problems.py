@@ -14,7 +14,12 @@ Output: False
 
 def has_duplicates(product_ids):
     # Your implementation here
-    pass
+    seen = set()                     # seen is the empty set with set not allowing duplicates
+    for pid in product_ids:          # go through each pid in the product_ids list  
+        if pid in seen:              # check if the pid is already in the seen list 
+            return True            # if it is then return true, there is a duplicate
+        seen.add(pid)                # if not in the seen, we add it there
+    return False                     # we finish the loop with no duplicates we show false
 
 
 """
@@ -32,14 +37,16 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        # Your initialization here
-        pass
+        self.queue = []                  # the list keeps the order in the tasks
 
     def add_task(self, task):
-        pass
+        self.queue.append(task)          # add new task at the end
 
     def remove_oldest_task(self):
-        pass
+        if self.queue:
+            return self.queue.pop(0)         # remove the oldest task which is the first one then
+        return None                        # if queue is empty, return None
+
 
 
 """
@@ -57,10 +64,11 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        pass
+        self.values = set()               # the set will store unique values
 
     def add(self, value):
-        pass
+        self.values.add(value)           # add adds the value to the set while ignoring duplicates
 
     def get_unique_count(self):
-        pass
+        return len(self.values)            # return how many unique values are in the set
+
